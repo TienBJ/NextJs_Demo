@@ -5,9 +5,9 @@
         "content": "English"
     },
     {
-        "href" :"/tr",
+        "href" :"/vn",
         "icon": "/icon/tr.svg",
-        "content": "Turkish"
+        "content": "Vietnameses"
     },
     {
         "href" :"/fr",

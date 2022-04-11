@@ -2,20 +2,27 @@ import type { NextPage } from "next";
 
 import { useDispatch} from "react-redux";
 import { RootState, useAppSelector } from "../redux/store";
+
 import { actions as loginActions, reducer as loginReducer } from "../redux/modules/loginSlice";
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
-const IndexPage: NextPage = (props: any) => {
+
+
+
+function IndexPage(props: any) {
   
-  // const [authTokens, setAuthTokens] =useState(sessionStorage.getItem('accessJWT') ? JSON.parse(sessionStorage.getItem('accessJWT') || '{}') : null)
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const router = useRouter();
+
+
+
 	const { isLoading, isAuth, result } = useAppSelector(
 		(state: RootState) => state.login
 	);
+
 	const dispatch = useDispatch();
 
 	const { fetch } = loginActions;
@@ -43,6 +50,7 @@ const IndexPage: NextPage = (props: any) => {
 
 
 	return (
+
 		<div>
 			{
 				<div className="h-screen flex bg-gray-bg1">

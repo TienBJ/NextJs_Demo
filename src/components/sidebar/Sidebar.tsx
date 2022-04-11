@@ -16,6 +16,7 @@ const Sidebar = () => {
 
 	const [showOptions, setShowOptions] = useState(false);
 	const [showProducts, setShowProducts] = useState(false);
+	const [showOrders, setShowOrders] = useState(false);
 	const [showAnalistic, setShowAnalistic] = useState(false);
 
 
@@ -26,6 +27,9 @@ const Sidebar = () => {
 	};
 	const handleProduct= () => {
     setShowProducts(!showProducts)
+	};
+	const handleOrders= () => {
+    setShowOrders(!showOrders)
 	};
 	const handleAnalistic= () => {
     setShowAnalistic(!showAnalistic)
@@ -41,7 +45,7 @@ const Sidebar = () => {
 				<div className="flex items-center justify-between">
 					<Link href="/about">
 						<a className=" rounded flex items-center justify-center mb-2">
-							<Image src="/logo.png" width={150} height={30} />
+							<Image src="/logo.png" width={100} height={100} alt=""/>
 						</a>
 					</Link>
 				</div>
@@ -63,18 +67,48 @@ const Sidebar = () => {
 						</Link>
 					</li>
 
-				
 
-					<li className="text-gray-500 relative">
-						<div className="absolute inset-y-0 flex items-center">
-						<ShoppingBagIcon width={24} height={24} />
+					<li className="text-gray-500 relative" onClick={handleOrders}>
+					<div className="text-gray-500 relative flex justify-between active:bg-gray-500 active:text-white hover:bg-gray-400 rounded">
+							<div className="flex items-center w-full ">
+								<div className="absolute inset-y-0 flex items-center">	
+				      	<ShoppingBagIcon width={24} height={24} />
 
+								</div>
+								<div className="inline-block text-sm w-full pl-8 pr-4 py-2 cursor-pointer ">
+									Orders
+								</div>
+							</div>
+							<button className="absolute right-0 flex items-center py-2 text-gray-400">
+								<ChevronDoubleDownIcon width={18} height={18} />
+							</button>
 						</div>
-						<Link href="/orders">
-							<a className="inline-block text-sm w-full pl-8 pr-4 py-2 hover:bg-gray-400 rounded focus:outline-none focus:bg-violet-200 focus:ring-2 ">
-								Orders
-							</a>
-						</Link>
+						{showOrders && (
+							<ul className="flex flex-col pl-2 text-gray-500 border-l border-violet-200">
+							<Link href="/orders/Orders" passHref>	
+							<div>
+							<li className="inline-block w-full px-4 py-2 text-xs rounded hover:bg-violet-200">
+							 <a className="cursor-pointer">Siparişler </a>		
+								</li> 
+							</div>
+							</Link>
+
+                <Link href="/orders/Draft" passHref >
+									<li className="inline-block w-full px-4 py-2 text-xs rounded hover:bg-violet-200">
+									
+									 	<a className="cursor-pointer"> Taslaklar </a>
+								</li>	
+								</Link>
+								<Link href="/orders/Abondoned" passHref >
+									<li className="inline-block w-full px-4 py-2 text-xs rounded hover:bg-violet-200">
+									
+									 	<a className="cursor-pointer"> Terkedilmiş Öğeler </a>
+								</li>	
+								</Link>
+							
+							
+							</ul>
+						)}
 					</li>
 
 
@@ -95,7 +129,7 @@ const Sidebar = () => {
 						</div>
 						{showProducts && (
 							<ul className="flex flex-col pl-2 text-gray-500 border-l border-violet-200">
-							<Link href="/products/product">	
+							<Link href="/products/Products"  passHref>	
 							<div>
 							<li className="inline-block w-full px-4 py-2 text-xs rounded hover:bg-violet-200">
 							 <a className="cursor-pointer">Ürünler </a>		
@@ -103,26 +137,26 @@ const Sidebar = () => {
 							</div>
 							</Link>
 
-                <Link href="/products" >
+                <Link href="/dashboard"  passHref >
 									<li className="inline-block w-full px-4 py-2 text-xs rounded hover:bg-violet-200">
 									
 									 	<a className="cursor-pointer"> Stok </a>
 								</li>	
 								</Link>
-								<Link href="/products" >
+								<Link href="/dashboard"  passHref>
 									<li className="inline-block w-full px-4 py-2 text-xs rounded hover:bg-violet-200">
 									
 									 	<a className="cursor-pointer"> Transferler </a>
 								</li>	
 								</Link>
-								<Link href="/products" >
+								<Link href="/dashboard"  passHref >
 									<li className="inline-block w-full px-4 py-2 text-xs rounded hover:bg-violet-200">
 									
 									 	<a className="cursor-pointer"> Koleksiyonlar </a>
 								</li>	
 								</Link>
 
-								<Link href="/products" >
+								<Link href="/dashboard"  passHref >
 									<li className="inline-block w-full px-4 py-2 text-xs rounded hover:bg-violet-200">
 									
 									 	<a className="cursor-pointer"> Hediye Kartları </a>
@@ -164,7 +198,7 @@ const Sidebar = () => {
 						</div>
 						{showAnalistic && (
 							<ul className="flex flex-col pl-2 text-gray-500 border-l border-violet-200">
-							<Link href="/settings/users">	
+							<Link href="/settings/Permissions"  passHref>	
 							<div>
 							<li className="inline-block w-full px-4 py-2 text-xs rounded hover:bg-violet-200">
 							 <a className="cursor-pointer">Siparişler  </a>		
@@ -172,7 +206,7 @@ const Sidebar = () => {
 							</div>
 							</Link>
 
-                <Link href="/settings/userpermissions" >
+                <Link href="/settings/Permissions"  passHref >
 									<li className="inline-block w-full px-4 py-2 text-xs rounded hover:bg-violet-200">
 								
 									
@@ -181,7 +215,7 @@ const Sidebar = () => {
 								
 								</li>	
 								</Link>
-								<Link href="/settings/userpermissions" >
+								<Link href="/settings/Permissions"  passHref >
 									<li className="inline-block w-full px-4 py-2 text-xs rounded hover:bg-violet-200">
 								
 									
@@ -200,7 +234,7 @@ const Sidebar = () => {
 						<GiftIcon width={24} height={24} />
 
 						</div>
-						<Link href="/">
+						<Link href="/dashboard">
 							<a className="inline-block text-sm w-full pl-8 pr-4 py-2 hover:bg-gray-400 rounded focus:outline-none focus:bg-violet-200 focus:ring-2 ">
 								Discount
 							</a>
@@ -228,7 +262,7 @@ const Sidebar = () => {
 						</div>
 						{showOptions && (
 							<ul className="flex flex-col pl-2 text-gray-500 border-l border-violet-200">
-							<Link href="/settings/users">	
+							<Link href="/settings/User" passHref >	
 							<div>
 							<li className="inline-block w-full px-4 py-2 text-xs rounded hover:bg-violet-200">
 							 <a className="cursor-pointer">Users  </a>		
@@ -236,7 +270,7 @@ const Sidebar = () => {
 							</div>
 							</Link>
 
-                <Link href="/settings/userpermissions" >
+                <Link href="/settings/Permissions" passHref >
 									<li className="inline-block w-full px-4 py-2 text-xs rounded hover:bg-violet-200">
 								
 									

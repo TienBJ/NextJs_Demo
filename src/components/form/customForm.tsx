@@ -1,7 +1,6 @@
 import React from "react";
 import makeData from '../../../JsonData/customer-list.json'
 
-import CustomTable from "../customTable/CustomTable";
 
 
 
@@ -11,7 +10,7 @@ const Form = (props: any) => {
 	const resend= true;
 	// <span className={!resend? "bg-orange-300 text-orange-500 flex items-center w-20 h-6 justify-center font-bold tex-sm rounded-lg mr-3" : "w-20 mr-3"}>{!resend? "Resend" : null}</span>
 	//                      <button className="text-red-400"><BanIcon width={18} /> </button>
-const renderDotsItem = (item,index) =>(
+const renderDotsItem = (item:any,index:any) =>(
   <div key={index}>
     <a className='block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 border-b-2'> {item} </a>
   </div>
@@ -59,7 +58,7 @@ const columns = React.useMemo(
 										className="appearance-none block w-full rounded-lg text-gray-700 border border-gray-400  py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
 										id="grid-last-name"
 										type="text"
-										placeholder="example@secilstore.com"
+										placeholder="example"
 									/>
 								</div>
 							</div>
@@ -72,7 +71,7 @@ const columns = React.useMemo(
 										className="appearance-none block w-full text-gray-700 border border-gray-400 rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
 										id="grid-last-name"
 										type="text"
-										placeholder="example@secilstore.com"
+										placeholder="example"
 									/>
 								</div>
 							</div>
@@ -106,7 +105,7 @@ const columns = React.useMemo(
 										className="appearance-none block w-full rounded-lg text-gray-700 border border-gray-400  py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
 										id="grid-last-name"
 										type="text"
-										placeholder="example@secilstore.com"
+										placeholder="example"
 									/>
 								</div>
 							</div>
@@ -119,7 +118,7 @@ const columns = React.useMemo(
 										className="appearance-none block w-full text-gray-700 border border-gray-400 rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
 										id="grid-last-name"
 										type="text"
-										placeholder="example@secilstore.com"
+										placeholder="example"
 									/>
 								</div>
 							</div>
@@ -359,7 +358,7 @@ const columns = React.useMemo(
 										className="appearance-none block w-full text-gray-700 border border-gray-400 rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
 										id="grid-last-name"
 										type="text"
-										placeholder="example@secilstore.com"
+										placeholder="example"
 									/>
 								</div>
 							</div>
@@ -382,10 +381,10 @@ const columns = React.useMemo(
 					<div className="pl-5">
 						<article>
 							<h3>Invitation E-Mails</h3>
-							<p>It includes Users we invite and don't log into the system</p>
+							<p>It includes Users we invite and dont log into the system</p>
 						</article>
 					</div>
-					<CustomTable columns={columns} data={data} action={action} />
+			
 
 				</div>
 			)}

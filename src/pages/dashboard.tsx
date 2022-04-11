@@ -1,282 +1,196 @@
 import React from "react";
 import Charts from "../components/charts/Charts";
-import Layout from "../components/layout/Layout";
 import Widgets from "../components/widgets/Widgets";
-import { CircularProgressbar } from "react-circular-progressbar";
-import "react-circular-progressbar/dist/styles.css";
+import MainLayout from "../layout/MainLayout/MainLayout";
+
+//icons
+import { CashIcon } from "@heroicons/react/outline";
+import CollapseTable from "../components/customTable/CollapseTable";
+import BasicTable from "../components/customTable/BasicTable";
+
+const Headers = [
+	"Bestsellers",
+	"Most Viewed Products",
+	"New Customers",
+	"Customers",
+];
+
+const Headers2 = [
+	{ title: "Customer", props: { className: "" } },
+	{ title: "Items", props: { className: "" } },
+	{ title: "Total", props: { className: "" } },
+];
+
+const BestSellers = [
+	{ title: "Product", props: { className: "" } },
+	{ title: "Price", props: { className: "" } },
+	{ title: "Quantity", props: { className: "" } },
+];
+
+const MostViewed = [
+	{ title: "Product", props: { className: "" } },
+	{ title: "Price", props: { className: "" } },
+	{ title: "Views", props: { className: "" } },
+];
+const Cust = [
+	{ title: "Customer", props: { className: "" } },
+	{ title: "Orders", props: { className: "" } },
+	{ title: "Avarage", props: { className: "" } },
+	{ title: "Total", props: { className: "" } },
+];
+
+
+let Dataaa = [
+	[
+		{
+			title: "Gizo",
+			props: { className: "" },
+		},
+		{
+			title: "1",
+			props: { className: "" },
+		},
+		{
+			title: "2",
+			props: { className: "" },
+		},
+	],
+	[
+		{
+			title: "ccc",
+			props: { className: "" },
+		},
+		{
+			title: "2",
+			props: { className: "" },
+		},
+		{
+			title: "16",
+			props: { className: "" },
+		},
+	],
+];
+
+Dataaa = Dataaa.map((dat) =>
+	dat.map((x) => {
+		x.title === "16" && (x.props.className = "text-red-600")
+		return x;
+	})
+);
 
 const dashboard = () => {
 	return (
-		<Layout>
+		<MainLayout>
 			<div className="w-full h-screen ">
-				<div className="grid grid-cols-4 gap-4 p-4">
-					<Widgets
-						title="Users"
-						action="decline"
-						rate="50"
-						content="100"
-						img="UserImg"
-					/>
-					<Widgets
-						title="Orders"
-						action="rise"
-						rate="30"
-						content="500"
-						img="OrderImg"
-					/>
-					<Widgets
-						title="Earnings"
-						action="decline"
-						rate="20"
-						content="$100000"
-						img="EarnImg"
-					/>
-					<Widgets
-						title="Balance"
-						action="rise"
-						rate="10"
-						content="$500000"
-						img="BalanceImg"
-					/>
-				</div>
+				{/* total sales && chart */}
 
-				<div className="grid grid-cols-3 gap-4 p-4">
-					<div className=" max-w-md bg-white ml-4 p-4 rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-						<div className="flex justify-between">
-							<span className="text-gray-500">Total Revenue</span>
-							<button>
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									className="h-6 w-6"
-									fill="none"
-									viewBox="0 0 24 24"
-									stroke="currentColor"
-									strokeWidth={2}
-								>
-									<path
-										strokeLinecap="round"
-										strokeLinejoin="round"
-										d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
-									/>
-								</svg>
+				<div className="flex p-4 space-x-4">
+					<div className="w-2/5">
+						<div className="mb-5">
+							<Widgets
+								title="Lifetime Sales"
+								action="rise"
+								rate="30"
+								content="500"
+								img="EarnImg"
+							/>
+						</div>
+
+						<div className="mb-5">
+							<Widgets
+								title="Earnings"
+								action="decline"
+								rate="20"
+								content="$100000"
+								img="OrderImg"
+							/>
+						</div>
+
+						{/* last order */}
+						<BasicTable
+							headers={Headers2}
+							title={"Last Orders"}
+							content={Dataaa}
+						></BasicTable>
+					</div>
+
+					{/* charts */}
+					<div className=" w-2/3 col-span-2 border border-slate-200 shadow-md p-4">
+						<div className="flex justify-end m-4">
+							<button className="border border-slate-200 p-4 text-md font-bold text-slate-500 w-44 rounded hover:bg-slate-100 hover:border-none ">
+								Last 24 Hours
 							</button>
 						</div>
-						<div className="flex justify-center mt-5">
-							<div className="w-36">
-								<CircularProgressbar value={70} text={"70%"} strokeWidth={5} />
-								<span className="text-gray-400 text-sm mt-4">
-									Total sales made today
+						<Charts />
+						<div className="flex space-x-2 justify-center border mt-2">
+							<div className="flex flex-col border-r p-4">
+								<span className="text-md font-extrabold text-slate-600 p-4">
+									Revenue
+								</span>
+								<span className="text-center text-sm flex items-center justify-center text-slate-400">
+									{" "}
+									<CashIcon className="w-6 h-6" /> 120tl
+								</span>
+							</div>
+							<div className="flex flex-col border-r p-4">
+								<span className="text-md font-extrabold text-slate-600 p-4">
+									Tax
+								</span>
+								<span className="text-center text-sm flex items-center justify-center text-slate-400">
+									{" "}
+									<CashIcon className="w-6 h-6" /> 120tl
+								</span>
+							</div>
+							<div className="flex flex-col border-r p-4">
+								<span className="text-md font-extrabold text-slate-600 p-4">
+									Shipping
+								</span>
+								<span className="text-center text-sm flex items-center justify-center text-slate-400">
+									{" "}
+									<CashIcon className="w-6 h-6" /> 120tl
+								</span>
+							</div>
+							<div className="flex flex-col border-r p-4">
+								<span className="text-md font-extrabold text-slate-600 p-4">
+									Quantity
+								</span>
+								<span className="text-center text-sm flex items-center justify-center text-slate-400">
+									{" "}
+									<CashIcon className="w-6 h-6" /> 120tl
 								</span>
 							</div>
 						</div>
-						<div className="flex justify-center mt-5">
-							<article className="text-center">
-								<span className="text-2xl font-semibold"> $420 </span>
-								<p className="text-gray-500 p-5">
-                  Previous transactions processing Last payments may not be include.
-								</p>
-							</article>
-						</div>
-					</div>
-
-					<div className="col-span-2">
-						<Charts />
 					</div>
 				</div>
-
 
 				{/* tables */}
-				<div className="flex border border-gray-200 p-4">
-					{/* last order */}
-					<div className="p-4 mt-5 max-w-lg bg-white rounded-lg  shadow-md sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
-						<div className="relative overflow-x-auto mt-5  sm:rounded-lg">
-							<span className="ml-2 font-semibold mt-5 uppercase">
-								Last Orders
-							</span>
-							<table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 ">
-								<thead className="text-xs border-b-2 text-gray-800 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-									<tr>
-										<th scope="col" className="px-2 py-3">
-											Name
-										</th>
-										<th scope="col" className="px-2 py-3">
-											{" "}
-											Sales
-										</th>
-										<th scope="col" className="px-2 py-3">
-											Number
-										</th>
-										<th scope="col" className="px-6 py-3">
-											<span className="sr-only">Detail</span>
-										</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr className="bg-white border-b-2 dark:bg-gray-800 dark:border-gray-700">
-										<th
-											scope="row"
-											className="px-2 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
-										>
-											Gizem Candemir
-										</th>
-										<td className="px-2 py-4">5000$</td>
-										<td className="px-2 py-4">554 555 55 55</td>
-										<td className="px-6 py-4 text-right">
-											<a
-												href="#"
-												className="font-medium text-gray-600 dark:text-red-400 hover:underline"
-											>
-												<svg
-													xmlns="http://www.w3.org/2000/svg"
-													className="h-6 w-6"
-													fill="none"
-													viewBox="0 0 24 24"
-													stroke="currentColor"
-													strokeWidth={2}
-												>
-													<path
-														strokeLinecap="round"
-														strokeLinejoin="round"
-														d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
-													/>
-												</svg>
-											</a>
-										</td>
-									</tr>
-									<tr className="bg-white border-b-2 dark:bg-gray-800 dark:border-gray-700">
-										<th
-											scope="row"
-											className="px-2 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
-										>
-											Caner
-										</th>
-										<td className="px-2 py-4">10$</td>
-										<td className="px-2 py-4">111 111 11 11</td>
-
-										<td className="px-6 py-4 text-right">
-											<a
-												href="#"
-												className="font-medium text-gray-600 dark:text-red-400 hover:underline"
-											>
-												<svg
-													xmlns="http://www.w3.org/2000/svg"
-													className="h-6 w-6"
-													fill="none"
-													viewBox="0 0 24 24"
-													stroke="currentColor"
-													strokeWidth={2}
-												>
-													<path
-														strokeLinecap="round"
-														strokeLinejoin="round"
-														d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
-													/>
-												</svg>
-											</a>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
+				<div className="flex p-4 space-x-4">
+					{/* last search terms*/}
+					<div className="w-1/2">
+							<BasicTable headers={Headers2} title={"Last Search Terms"} content={Dataaa}></BasicTable>
 					</div>
+				
 
-					{/* top customer */}
-					<div className="p-4 mt-5 flex-1 bg-white rounded-lg  shadow-md sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
-						<div className="relative overflow-x-auto mt-5  sm:rounded-lg">
-							<span className="ml-2 font-semibold mt-5 uppercase">
-								Top Customer
-							</span>
-							<table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 ">
-								<thead className="text-xs border-b-2 text-gray-800 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-									<tr>
-										<th scope="col" className="px-2 py-3">
-											Name
-										</th>
-										<th scope="col" className="px-2 py-3">
-											{" "}
-											Sales
-										</th>
-										<th scope="col" className="px-2 py-3">
-											Number
-										</th>
-										<th scope="col" className="px-6 py-3">
-											<span className="sr-only">Detail</span>
-										</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr className="bg-white border-b-2 dark:bg-gray-800 dark:border-gray-700">
-										<th
-											scope="row"
-											className="px-2 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
-										>
-											Gizem Candemir
-										</th>
-										<td className="px-2 py-4">5000$</td>
-										<td className="px-2 py-4">554 555 55 55</td>
-										<td className="px-6 py-4 text-right">
-											<a
-												href="#"
-												className="font-medium text-gray-600 dark:text-red-400 hover:underline"
-											>
-												<svg
-													xmlns="http://www.w3.org/2000/svg"
-													className="h-6 w-6"
-													fill="none"
-													viewBox="0 0 24 24"
-													stroke="currentColor"
-													strokeWidth={2}
-												>
-													<path
-														strokeLinecap="round"
-														strokeLinejoin="round"
-														d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
-													/>
-												</svg>
-											</a>
-										</td>
-									</tr>
-									<tr className="bg-white border-b-2 dark:bg-gray-800 dark:border-gray-700">
-										<th
-											scope="row"
-											className="px-2 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
-										>
-											Caner
-										</th>
-										<td className="px-2 py-4">10$</td>
-										<td className="px-2 py-4">111 111 11 11</td>
-
-										<td className="px-6 py-4 text-right">
-											<a
-												href="#"
-												className="font-medium text-gray-600 dark:text-red-400 hover:underline"
-											>
-												<svg
-													xmlns="http://www.w3.org/2000/svg"
-													className="h-6 w-6"
-													fill="none"
-													viewBox="0 0 24 24"
-													stroke="currentColor"
-													strokeWidth={2}
-												>
-													<path
-														strokeLinecap="round"
-														strokeLinejoin="round"
-														d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
-													/>
-												</svg>
-											</a>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
+					{/* product table */}
+					<div className="flex-1 mt-8">
+						<CollapseTable title={Headers}>
+							<div>
+							<BasicTable headers={BestSellers} title={"Best Sellers"} content={Dataaa}></BasicTable>
+							</div>
+							<div>
+							<BasicTable headers={MostViewed} title={"Most Viewed Products"} content={Dataaa}></BasicTable>
+							</div>
+							<div>
+							<BasicTable headers={Cust} title={"New Customers"} content={Dataaa}></BasicTable>
+							</div>
+							<div>
+							<BasicTable headers={Cust} title={"Customers"} content={Dataaa}></BasicTable>
+							</div>
+						</CollapseTable>
 					</div>
 				</div>
-
-
 			</div>
-		</Layout>
+		</MainLayout>
 	);
 };
 

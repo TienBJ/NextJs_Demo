@@ -4,7 +4,7 @@ import Header from '../header/Header'
 import RoadHeader from '../roadheader/RoadHeader'
 import Sidebar from '../sidebar/Sidebar'
 
-const Layout = ({title,children}) => {
+const Layout = ({title,children}:any) => {
 
   return (
 	<>
@@ -13,10 +13,10 @@ const Layout = ({title,children}) => {
        <div className='w-64'>
          <Sidebar/>
         </div>
-        <div className='flex-1 min-w-0'>
+        <div className='flex-1 min-w-0 p-4'>
            <Header /> 
-					 <RoadHeader title={title} />
-             {children}
+		      	{title && <RoadHeader title={title} /> }
+            {children}
         </div>
     </div>
       
